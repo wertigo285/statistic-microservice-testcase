@@ -4,7 +4,7 @@ from collections import namedtuple
 from fastapi import Query
 from fastapi.exceptions import HTTPException
 
-from .models import re_date_format
+from .schemas import re_date_format
 
 Period = namedtuple('Period', ['start', 'end'])
 
