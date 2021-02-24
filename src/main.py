@@ -1,27 +1,15 @@
-import os
 from typing import Optional, Tuple, List
 
-
 from fastapi import FastAPI, Depends, Response, Query
-from dotenv import load_dotenv
 
 from .schemas import Record, StatisticItem
-from .database import SQLBase, InMemoryBase
+from .database import Base
 from .depends import get_period
 
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
-if os.path.exists(dotenv_path):
-    load_dotenv(dotenv_path)
-
-sql = os.environ.get('SQL') == 'True'
-
 app = FastAPI()
 
-if sql:
-    base = SQLBase()
-else:
-    base = InMemoryBase()
+base = Base()
 
 re_sort_field = StatisticItem.get_sort_field_re()
 

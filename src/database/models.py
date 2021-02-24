@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Date, Numeric
 
-from .sql import Base, engine
+from .sql import Base
 
 
 class Record(Base):
@@ -11,6 +11,3 @@ class Record(Base):
     views = Column('views', Integer)
     clicks = Column('clicks', Integer)
     cost = Column('cost', Numeric)
-
-
-Base.metadata.create_all(bind=engine)

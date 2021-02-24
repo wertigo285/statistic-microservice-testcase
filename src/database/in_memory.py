@@ -12,18 +12,17 @@ class Base:
         return cls.instance
 
     def __init__(self):
-        self.items = []
+        self._items = []
 
     def add(self, item):
-        self.items.append(item)
-        self.items.sort(key=lambda item: item.date)
+        self._items.append(item)
+        self._items.sort(key=lambda item: item.date)
 
     def clear(self):
         self.items.clear()
 
     def show(self, start, end, sorting_field='date'):
-        period_items = filter(lambda item: start <=
-                              item.date <= end, self.items)
+        period_items = [item for item in self._items if start <= item.date <= end]
         result = []
         for date, items in groupby(period_items, key=lambda item: item.date):
             clicks = views = cost = cpc = cpm = 0
